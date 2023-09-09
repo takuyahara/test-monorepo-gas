@@ -11,7 +11,6 @@ REPO=test-monorepo-gas && \
 git clone --filter=blob:none --no-checkout git@github.com:takuyahara/${REPO}.git && \
 git -C ./${REPO} sparse-checkout init --no-cone && \
 echo '/*' > ./${REPO}/.git/info/sparse-checkout && \
-echo '/*/' >> ./${REPO}/.git/info/sparse-checkout && \
 echo '!/saya1/' >> ./${REPO}/.git/info/sparse-checkout && \
 echo '!/sayb1/' >> ./${REPO}/.git/info/sparse-checkout && \
 git -C ./${REPO} checkout
