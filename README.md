@@ -17,6 +17,29 @@ echo '!/sayb1/' >> ./${REPO}/.git/info/sparse-checkout && \
 git -C ./${REPO} checkout
 ```
 
+## [1.2.0 - `pnpm` を利用する](https://github.com/takuyahara/test-monorepo-gas/tree/1.2.0)
+
+パッケージマネージャーとして yarn ではなく `pnpm` を用いる。要点は以下の 2 点。
+
+1. ロックファイルの非共有
+
+`.npmrc` ファイルを作成し、以下を記述する。これにより `pnpm install` にてパッケージがインストールされた際に、ロックファイルが各ディレクトリに作成されるため Sparse Checkout を用いた開発に対応できる。
+
+```ini
+shared-workspace-lockfile=false
+```
+
+2. ワークスペースの指定
+
+pnpm においては、ワークスペースは `pnpm-workspace.yaml` に以下のように記述する。
+
+```yaml
+packages:
+  - "saya1"
+  - "sayb1"
+  - "invalid_package"
+```
+
 ## [1.1.0 - `yarn workspaces` を利用する](https://github.com/takuyahara/test-monorepo-gas/tree/1.1.0)
 
 1. 各ディレクトリにおける package.json に[必要事項を入力](https://github.com/takuyahara/test-monorepo-gas/commit/4f0f0911efb1c9f6074983baf1024d4fe4b042b6)する。

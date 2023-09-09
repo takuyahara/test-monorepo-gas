@@ -1,0 +1,4 @@
+packages:
+  - "saya1"
+  - "sayb1"
+  - "invalid_package"

@@ -9,5 +9,5 @@
   "containerEnv": {
     "TZ": "Asia/Tokyo"
   },
-  "postCreateCommand": "yarn install"
+  "postCreateCommand": "pnpm install"
 }
