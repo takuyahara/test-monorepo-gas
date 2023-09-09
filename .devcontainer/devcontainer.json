@@ -8,5 +8,6 @@
   },
   "containerEnv": {
     "TZ": "Asia/Tokyo"
-  }
+  },
+  "postCreateCommand": "yarn install"
 }
