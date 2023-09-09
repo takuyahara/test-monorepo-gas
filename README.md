@@ -2,6 +2,21 @@
 
 Google Apps Script (GAS) をモノレポにするための検証記録。
 
+# Sparse Checkout
+
+以下のコマンドを実行後にクローンされたフォルダをエディタで開き、各種パッケージをさらに Sparse Checkout する。
+
+```shell
+REPO=test-monorepo-gas && \
+git clone --filter=blob:none --no-checkout git@github.com:takuyahara/${REPO}.git && \
+git -C ./${REPO} sparse-checkout init --no-cone && \
+echo '/*' > ./${REPO}/.git/info/sparse-checkout && \
+echo '/*/' >> ./${REPO}/.git/info/sparse-checkout && \
+echo '!/saya1/' >> ./${REPO}/.git/info/sparse-checkout && \
+echo '!/sayb1/' >> ./${REPO}/.git/info/sparse-checkout && \
+git -C ./${REPO} checkout
+```
+
 ## [1.1.0 - `yarn workspaces` を利用する](https://github.com/takuyahara/test-monorepo-gas/tree/1.1.0)
 
 1. 各ディレクトリにおける package.json に[必要事項を入力](https://github.com/takuyahara/test-monorepo-gas/commit/4f0f0911efb1c9f6074983baf1024d4fe4b042b6)する。
