@@ -3,5 +3,5 @@ function sayB1() {
   const sheet = spreadsheet.getSheetByName("Sheet");
   const range = sheet.getRange("B1");
   const value = range.getValue();
-  Browser.msgBox(`B1: ${value}`);
+  Browser.msgBox(`B1 = ${value}`);
 }
