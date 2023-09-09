@@ -2,6 +2,38 @@
 
 Google Apps Script (GAS) をモノレポにするための検証記録。
 
+## [1.1.0 - `yarn workspaces` を利用する](https://github.com/takuyahara/test-monorepo-gas/tree/1.1.0)
+
+1. 各ディレクトリにおける package.json に[必要事項を入力](https://github.com/takuyahara/test-monorepo-gas/commit/4f0f0911efb1c9f6074983baf1024d4fe4b042b6)する。
+
+2. プロジェクトルートディレクトリにてパッケージインストールを実行すると [package.json](https://github.com/takuyahara/test-monorepo-gas/blob/4f0f0911efb1c9f6074983baf1024d4fe4b042b6/package.json) に記載のパッケージ、および .workspaces.packages に記載のディレクトリ配下における package.json 内に記載のパッケージが一括でプロジェクトルートディレクトリの node_modules へインストールされる。
+
+```shell
+$ cd /workspaces/test-monorepo-gas
+$ yarn install
+(...略...)
+Done in 0.12s.
+$ ls -l node_modules | grep uglify-js
+drwxr-xr-x   8 node node   256 Sep  9 22:05 uglify-js
+```
+
+Workspaces 配下に生成される node_modules の中身は、プロジェクトルートディレクトリの node_modules へインストールされたファイルへのシンボリックリンクになっている。
+
+```shell
+$ ls -l sayb1/node_modules/.bin/uglifyjs
+lrwxr-xr-x 1 node node 44 Sep  9 22:05 sayb1/node_modules/.bin/uglifyjs -> ../../../node_modules/uglify-js/bin/uglifyjs
+```
+
+3. 独自パッケージを持つプロジェクトにて、ビルドとプロジェクトのプッシュの両方が成功することを確認する。
+
+```shell
+$ cd sayb1
+$ make build
+$ npx clasp push
+```
+
+また .workspaces.packages に無効なパッケージ名を指定してもエラーは発生せず、処理が正常に終了するため Sparse Checkout を用いて**一部のパッケージのみをクローンして開発する**ことも可能である。
+
 ## [1.0.0 - 共通化するには工夫が必要](https://github.com/takuyahara/test-monorepo-gas/tree/1.0.0)
 
 1. 共有パッケージ clasp をインストールする。
