@@ -1,7 +1,14 @@
 {
   "name": "test-monorepo-gas",
+  "private": true,
   "devDependencies": {
     "@google/clasp": "^2.4.2",
     "@types/google-apps-script": "^1.0.68"
+  },
+  "workspaces": {
+    "packages": [
+      "saya1",
+      "sayb1"
+    ]
   }
 }
