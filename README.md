@@ -49,6 +49,10 @@ $ npx clasp push
 
 また .workspaces.packages に無効なパッケージ名を指定してもエラーは発生せず、処理が正常に終了するため Sparse Checkout を用いて**一部のパッケージのみをクローンして開発する**ことも可能である。
 
+**追記**
+
+Sparse Checkout を使って開発すると yarn.lock ファイルに記述が変わる。例えば独自パッケージを用いる sayb1 の開発後にコミットし、その後に saya1 を Sparse Checkout して `yarn install` すると独自パッケージがインストールされないため、差分が yarn.lock 反映されてしまう。改善策を要調査。
+
 ## [1.0.0 - 共通化するには工夫が必要](https://github.com/takuyahara/test-monorepo-gas/tree/1.0.0)
 
 1. 共有パッケージ clasp をインストールする。
