@@ -1,0 +1,6 @@
+{
+  "name": "@test-monorepo-gas/sayb1",
+  "devDependencies": {
+    "uglify-js": "^3.17.4"
+  }
+}

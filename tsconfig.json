@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true
+    // "lib": ["ES2016"], // エラーが出たら設定する
+    // "target": "ES5" // エラーが出たら設定する
+  },
+  "include": ["./saya1", "./sayb1"]
+}
